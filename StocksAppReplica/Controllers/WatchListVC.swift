@@ -9,25 +9,66 @@ import UIKit
 import FloatingPanel
 
 class WatchListVC: UIViewController, UISearchControllerDelegate {
-    
-    var fpc: FloatingPanelController!
+
+    private var watchListMap : [String : [CandleStick]] = [:]
+//ViewModels
+    private var viewModels: [String] = []
+    private var fpc: FloatingPanelController!
     private var searchTimer : Timer?
+    private let tableView: UITableView = {
+        let table = UITableView()
+
+        return table
+    }()
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
 
         setUpSearchController()
+        setupTableView()
+        fetchWatchListData()
         setupTitleView()
         setupPanel()
     }
+
+    func fetchWatchListData(){
+        let symbols = PersistenceManager.shared.watchList
+
+        let group = DispatchGroup()
+        for symbol in symbols{
+            group.enter()
+            APICaller.shared.marketData(for: symbol) { [weak self] result in
+                defer{
+                    group.leave()
+                }
+                switch result{
+                case .failure(let error):
+                    print(error)
+                case .success(let data):
+                    let cs = data.candlesticks
+                    self?.watchListMap[symbol] = cs
+                }
+            }        }
+        group.notify(queue: .main) {
+            [weak self] in
+            self?.tableView.reloadData()
+        }
+    }
+    func setupTableView(){
+        view.addSubview(tableView)
+        tableView.delegate = self
+        tableView.dataSource = self
+    }
     func setupPanel(){
-        let vc = TopStoriesVC(type: .topStories)
+        let vc = TopStoriesVC(type: .company(symbol: "SNAP"))
         fpc = FloatingPanelController()
-        fpc.surfaceView.backgroundColor = .secondarySystemBackground
         fpc.set(contentViewController: vc)
         fpc.addPanel(toParent: self)
         fpc.delegate = self
+        fpc.surfaceView.backgroundColor = .secondarySystemBackground
+        fpc.backdropView.backgroundColor = .secondarySystemBackground
     }
     private func setupTitleView(){
         let titleView = UIView(frame: CGRect(
@@ -93,4 +134,18 @@ extension WatchListVC : FloatingPanelControllerDelegate{
     func floatingPanelDidChangeState(_ fpc: FloatingPanelController) {
         navigationItem.titleView?.isHidden = fpc.state == .full
     }
+}
+extension WatchListVC : UITableViewDelegate, UITableViewDataSource{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return watchListMap.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return UITableViewCell()
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+
+    
 }

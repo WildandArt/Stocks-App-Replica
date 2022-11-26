@@ -19,7 +19,24 @@ final class APICaller{
         static let baseUrl = "https://finnhub.io/api/v1/"
         static let day: TimeInterval = 3600 * 24
     }
-
+    public func marketData(
+        for symbol : String,
+        numberOfDays: TimeInterval = 7,
+        completion: @escaping (Result<MarketDataResponse, Error>)->Void
+    ){
+        let today = Date()
+        let prior = today.addingTimeInterval(-(Constants.day * numberOfDays))
+        let url = url(for: .marketData,
+                      queryParams: [
+                        "symbol" : symbol,
+                        "resolution" : "1",
+                        "from" : "\(Int(prior.timeIntervalSince1970))",
+                        "to" : "\(Int(today.timeIntervalSince1970))"
+                      ])
+        request(url: url,
+                expecting: MarketDataResponse.self,
+                completion: completion)
+    }
     public func news(
         for type : TopStoriesVC.`Type`,
         completion: @escaping (Result<[NewsStory], Error>)->Void
@@ -50,6 +67,7 @@ final class APICaller{
         case search
         case topStories = "news"
         case companyNews = "company-news"
+        case marketData = "stock/candle"
     }
 
     private enum APIError: Error{
@@ -79,7 +97,7 @@ final class APICaller{
         let queryString = queryItems.map{
             "\($0.name)=\($0.value ?? "")"}.joined(separator: "&")
         urlString += "?" + queryString
-        print(urlString)
+        //print(urlString)
         return URL(string: urlString)
     }
     private func request<T:Codable>(url: URL?,

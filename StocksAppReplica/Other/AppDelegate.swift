@@ -32,12 +32,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
     private func debug(){
-        APICaller.shared.news(for: .company(symbol: "MSFT")) {  result in
+        APICaller.shared.marketData(for: "AAPL",
+                                    numberOfDays: 1) { result in
             switch result{
-            case .success(let news):
-                print(news.count)
-            case .failure: break
-                
+            case .success(let data):
+                let candleSticks = data.candlesticks
+            case .failure(let error):
+                print(error)
             }
         }
     }
