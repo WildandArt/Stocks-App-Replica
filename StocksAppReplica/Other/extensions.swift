@@ -6,6 +6,26 @@
 //
 
 import UIKit
+extension Notification.Name{
+    static let didAddToWatchList = Notification.Name("didAddToWatchList")
+}
+extension NumberFormatter{
+    static let percentFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.locale = .current
+        formatter.numberStyle = .percent
+        formatter.maximumFractionDigits = 2
+        return formatter
+    }()
+    static let numberFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.locale = .current
+        formatter.numberStyle = .decimal
+        formatter.maximumFractionDigits = 2
+        return formatter
+    }()
+}
+
 extension UIImageView{
     func setImage(with url: URL?){
         guard let url = url else{
@@ -23,6 +43,15 @@ extension UIImageView{
     }
 }
 extension String{
+
+    static func percentage(from double: Double)-> String {
+        let formatter = NumberFormatter.percentFormatter
+        return formatter.string(from: NSNumber(value: double)) ?? "\(double)"
+    }
+    static func formattedNumber(number: Double)-> String {
+        let formatter = NumberFormatter.numberFormatter
+        return formatter.string(from: NSNumber(value: number)) ?? "\(number)"
+    }
     static func string(from timeInterval: TimeInterval)->String{
         let date = Date(timeIntervalSince1970: timeInterval)
         return DateFormatter.prettyDateFormatter.string(from: date)

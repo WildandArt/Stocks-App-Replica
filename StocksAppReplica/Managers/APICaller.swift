@@ -97,7 +97,7 @@ final class APICaller{
         let queryString = queryItems.map{
             "\($0.name)=\($0.value ?? "")"}.joined(separator: "&")
         urlString += "?" + queryString
-        //print(urlString)
+       // print(urlString)
         return URL(string: urlString)
     }
     private func request<T:Codable>(url: URL?,

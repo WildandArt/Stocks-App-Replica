@@ -23,6 +23,8 @@
 		5C551B8A292CBD7A00202A4D /* SearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C551B89292CBD7900202A4D /* SearchResponse.swift */; };
 		5C946E5B29309F42002BD036 /* NewsStoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C946E5A29309F42002BD036 /* NewsStoryTableViewCell.swift */; };
 		5C946E852932090B002BD036 /* MarketDataResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C946E842932090B002BD036 /* MarketDataResponse.swift */; };
+		5C946E8729322715002BD036 /* WatchListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C946E8629322715002BD036 /* WatchListTableViewCell.swift */; };
+		5C946E89293229C8002BD036 /* StockChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C946E88293229C8002BD036 /* StockChartView.swift */; };
 		5CBF2EA6292DD9FE00F111AA /* NewsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CBF2EA5292DD9FE00F111AA /* NewsHeaderView.swift */; };
 		5CBF2EA8292E68BB00F111AA /* NewsStory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CBF2EA7292E68BB00F111AA /* NewsStory.swift */; };
 		5F7AE805D3C7A6B6D75C1F41 /* Pods_StocksAppReplica.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBC2DA401BCC5B5C223E4D35 /* Pods_StocksAppReplica.framework */; };
@@ -48,6 +50,8 @@
 		5C551B89292CBD7900202A4D /* SearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResponse.swift; sourceTree = "<group>"; };
 		5C946E5A29309F42002BD036 /* NewsStoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsStoryTableViewCell.swift; sourceTree = "<group>"; };
 		5C946E842932090B002BD036 /* MarketDataResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketDataResponse.swift; sourceTree = "<group>"; };
+		5C946E8629322715002BD036 /* WatchListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchListTableViewCell.swift; sourceTree = "<group>"; };
+		5C946E88293229C8002BD036 /* StockChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockChartView.swift; sourceTree = "<group>"; };
 		5CBF2EA5292DD9FE00F111AA /* NewsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsHeaderView.swift; sourceTree = "<group>"; };
 		5CBF2EA7292E68BB00F111AA /* NewsStory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsStory.swift; sourceTree = "<group>"; };
 		5F38A688181BC9BF8B648DCF /* Pods-StocksAppReplica.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StocksAppReplica.release.xcconfig"; path = "Target Support Files/Pods-StocksAppReplica/Pods-StocksAppReplica.release.xcconfig"; sourceTree = "<group>"; };
@@ -131,7 +135,9 @@
 				5C551B6B292B404300202A4D /* LaunchScreen.storyboard */,
 				5C551B87292B756F00202A4D /* SearchResultTableViewCell.swift */,
 				5C946E5A29309F42002BD036 /* NewsStoryTableViewCell.swift */,
+				5C946E8629322715002BD036 /* WatchListTableViewCell.swift */,
 				5CBF2EA5292DD9FE00F111AA /* NewsHeaderView.swift */,
+				5C946E88293229C8002BD036 /* StockChartView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -291,11 +297,13 @@
 				5CBF2EA8292E68BB00F111AA /* NewsStory.swift in Sources */,
 				5C551B86292B6FED00202A4D /* extensions.swift in Sources */,
 				5C946E5B29309F42002BD036 /* NewsStoryTableViewCell.swift in Sources */,
+				5C946E89293229C8002BD036 /* StockChartView.swift in Sources */,
 				5C551B80292B4FC000202A4D /* APICaller.swift in Sources */,
 				5C551B8A292CBD7A00202A4D /* SearchResponse.swift in Sources */,
 				5CBF2EA6292DD9FE00F111AA /* NewsHeaderView.swift in Sources */,
 				5C551B7C292B4D5B00202A4D /* SearchResultsVC.swift in Sources */,
 				5C551B7A292B4D3F00202A4D /* TopStoriesVC.swift in Sources */,
+				5C946E8729322715002BD036 /* WatchListTableViewCell.swift in Sources */,
 				5C551B63292B404100202A4D /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
