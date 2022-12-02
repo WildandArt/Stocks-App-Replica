@@ -19,6 +19,17 @@ final class APICaller{
         static let baseUrl = "https://finnhub.io/api/v1/"
         static let day: TimeInterval = 3600 * 24
     }
+    public func financialMetrics(
+        for symbol: String,
+completion: @escaping (Result<String, Error>)-> ()) {
+    let url = url(for: .financials,
+                  queryParams: ["symbol" : symbol, "metric":"all"])
+    request(
+            url: url,
+            expecting: String.self,
+            completion: completion)
+}
+
     public func marketData(
         for symbol : String,
         numberOfDays: TimeInterval = 7,
@@ -68,6 +79,7 @@ final class APICaller{
         case topStories = "news"
         case companyNews = "company-news"
         case marketData = "stock/candle"
+        case financials = "stock/metric"
     }
 
     private enum APIError: Error{

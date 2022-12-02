@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5C41CEDE293A5A8900D8923E /* FinancialMetricsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C41CEDD293A5A8900D8923E /* FinancialMetricsResponse.swift */; };
 		5C551B61292B404100202A4D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C551B60292B404100202A4D /* AppDelegate.swift */; };
 		5C551B63292B404100202A4D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C551B62292B404100202A4D /* SceneDelegate.swift */; };
 		5C551B65292B404100202A4D /* WatchListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C551B64292B404100202A4D /* WatchListVC.swift */; };
@@ -32,6 +33,7 @@
 
 /* Begin PBXFileReference section */
 		2813DAEA30676706732EF822 /* Pods-StocksAppReplica.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StocksAppReplica.debug.xcconfig"; path = "Target Support Files/Pods-StocksAppReplica/Pods-StocksAppReplica.debug.xcconfig"; sourceTree = "<group>"; };
+		5C41CEDD293A5A8900D8923E /* FinancialMetricsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinancialMetricsResponse.swift; sourceTree = "<group>"; };
 		5C551B5D292B404100202A4D /* StocksAppReplica.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StocksAppReplica.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C551B60292B404100202A4D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5C551B62292B404100202A4D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 				5C551B89292CBD7900202A4D /* SearchResponse.swift */,
 				5CBF2EA7292E68BB00F111AA /* NewsStory.swift */,
 				5C946E842932090B002BD036 /* MarketDataResponse.swift */,
+				5C41CEDD293A5A8900D8923E /* FinancialMetricsResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -292,6 +295,7 @@
 				5C551B88292B756F00202A4D /* SearchResultTableViewCell.swift in Sources */,
 				5C551B7E292B4D9B00202A4D /* StockDetailsVC.swift in Sources */,
 				5C551B65292B404100202A4D /* WatchListVC.swift in Sources */,
+				5C41CEDE293A5A8900D8923E /* FinancialMetricsResponse.swift in Sources */,
 				5C551B61292B404100202A4D /* AppDelegate.swift in Sources */,
 				5C551B82292B4FCD00202A4D /* PersistenceManager.swift in Sources */,
 				5CBF2EA8292E68BB00F111AA /* NewsStory.swift in Sources */,

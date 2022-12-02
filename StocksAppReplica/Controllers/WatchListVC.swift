@@ -182,10 +182,10 @@ extension WatchListVC: UISearchResultsUpdating{
 extension WatchListVC : SearchResultsVCDelegate{
     func SearchResultsVCdidSelect(searchResult: SearchResult) {
         navigationItem.searchController?.searchBar.resignFirstResponder()
-        let vc = StockDetailsVC()
+        let vc = StockDetailsVC(symbol: searchResult.symbol,
+                                companyName: searchResult.description)
         let navVC = UINavigationController(rootViewController: vc)
         vc.title = searchResult.description
-
         present(navVC, animated: true)
     }
 }
@@ -207,6 +207,12 @@ extension WatchListVC : UITableViewDelegate, UITableViewDataSource{
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        let viewModel = viewModels[indexPath.row]
+        let vc = StockDetailsVC(symbol: viewModel.symbol,
+                                companyName: viewModel.companyName,
+                                candleStickData: watchListMap[viewModel.symbol] ?? [])
+        let navVC = UINavigationController(rootViewController: vc)
+        present(navVC, animated: true)
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return WatchListTableViewCell.preferredHeight
