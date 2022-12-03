@@ -21,12 +21,12 @@ final class APICaller{
     }
     public func financialMetrics(
         for symbol: String,
-completion: @escaping (Result<String, Error>)-> ()) {
+        completion: @escaping (Result<FinancialMetricsResponse, Error>)-> ()) {
     let url = url(for: .financials,
                   queryParams: ["symbol" : symbol, "metric":"all"])
     request(
             url: url,
-            expecting: String.self,
+            expecting: FinancialMetricsResponse.self,
             completion: completion)
 }
 

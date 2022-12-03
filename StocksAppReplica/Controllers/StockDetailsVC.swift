@@ -13,6 +13,7 @@ class StockDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
 
 // symbol, company name and chart data we may have
     private var stories = [NewsStory]()
+    private var metrics: Metrics?
     private let symbol : String
     private let companyName: String
     private var candleStickData: [CandleStick]
@@ -77,12 +78,55 @@ class StockDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
                                                 height: (view.width * 0.7) + 100))
     }
     private func fetchFinancialData(){
+        let group = DispatchGroup()
+        if candleStickData.isEmpty{
+            group.enter()
+        }
         //fetch candle sticks
         // fetch financial metrics
-        renderChart()
+        group.enter()
+        APICaller.shared.financialMetrics(
+            for: symbol) { [weak self] result in
+                defer{
+                    group.leave()
+                }
+                switch result{
+                case .success(let response):
+                    let metrics = response.metric
+                    self?.metrics = metrics
+
+                case .failure(let error):
+                    print(error)
+                }
+            }
+        group.notify(queue: .main) {[weak self] in
+            self?.renderChart()
+        }
+
     }
     private func renderChart(){
+        let headerView = StockDetailHeaderView(frame:
+         CGRect(
+          x: 0,
+          y: 0,
+          width: view.width,
+          height: (view.width * 0.7) + 100))
 
+        var viewModels = [MetricCollectionViewCell.ViewModel]()
+        if let metrics = metrics{
+            viewModels.append(.init(name: "52W High", value: "\(metrics.annualWeekHigh)"))
+            viewModels.append(.init(name: "52L High", value: "\(metrics.annualWeekLow)"))
+            viewModels.append(.init(name: "52W Return", value: "\(metrics.annualWeekPriceReturnDaily)"))
+            viewModels.append(.init(name: "Beta", value: "\(metrics.beta)"))
+            viewModels.append(.init(name: "10D Vol.", value: "\(metrics.tenDayAverageTradingVolume)"))
+        }
+
+        headerView.configure(chartViewModel: .init(
+            data: [],
+            showLegend: false,
+            showAxis: false),
+            metricViewModels: viewModels)
+        tableView.tableHeaderView = headerView
     }
     private func fetchNews(){
         APICaller.shared.news(for: .company(symbol: symbol)) { [weak self] result in

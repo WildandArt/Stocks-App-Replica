@@ -8,5 +8,5 @@ target 'StocksAppReplica' do
   # Pods for StocksAppReplica
 	pod 'FloatingPanel'
 	pod 'SDWebImage'
-
+	pod 'Charts'
 end
